@@ -71,9 +71,9 @@ Take a look at what you have:
 
 - First let's get the **game.html** file completed - it needs to look like this:
 
-![Screenshot](_images/circle-blast-4-pixi6.jpg)
+![Screenshot](_images/circle-blast-4-pixi6.5.8.png)
 
-- If you don't want to type in the URLs for the 2 libraries, then google "CDN Pixi" and "CDN Howler" to find and copy/paste the URLs yourself.
+- If you don't want to type in the URLs for the 2 libraries, then google "CDN Pixi" and "CDN Howler" to find and copy/paste the URLs yourself.  **For now, we still recommend that you, stick to Pixi Version 6.  Pixi Version 7 is new last semester and may not match up perfectly with some of our materials.**
 
 ### Is everything imported?
 
@@ -101,7 +101,7 @@ document.body.appendChild(app.view);
 const sceneWidth = app.view.width;
 const sceneHeight = app.view.height;	
 
-// pre-load the images
+// pre-load the images (this code works with PIXI v6)
 app.loader.
     add([
         "images/spaceship.png",
@@ -110,6 +110,22 @@ app.loader.
 app.loader.onProgress.add(e => { console.log(`progress=${e.progress}`) });
 app.loader.onComplete.add(setup);
 app.loader.load();
+
+// pre-load the images (this code works with PIXI v7)
+// let assets;
+// loadImages();
+// async function loadImages(){
+// // https://github.com/pixijs/pixijs/wiki/v7-Migration-Guide#-replaces-loader-with-assets
+// // https://pixijs.io/guides/basics/assets.html
+// PIXI.Assets.addBundle('sprites', {
+//   spaceship: 'images/spaceship.png',
+//   explosions: 'images/explosions.png',
+//   move: 'images/move.png'
+// });
+//
+// assets = await PIXI.Assets.loadBundle('sprites');
+// setup();
+// }
 
 // aliases
 let stage;
@@ -159,7 +175,7 @@ function setup() {
 - Note that we are starting the game - by calling `setUp()` - AFTER we have pre-loaded all of our image assets.
 
 
-- **Load the game in a browser to verify that PIXI is loaded (you should see a 600x600 black screen):**
+- **Load the game in a browser to verify that PIXI is loaded (you should see a 600x600 black screen).  The messages in the console won't appear when using PIXI v7, but you can examine the value of PIXI.VERSION in the console if you wish:**
 
 ![Screenshot](_images/circle-blast-6-pixi6.jpg)
 
